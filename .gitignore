@@ -5,6 +5,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+data.md
+auth.js 
+authCopy.js 
+authOriginal.js 
+postcomment.json 
+specificpost.json 
+subredditposts.md 
+
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

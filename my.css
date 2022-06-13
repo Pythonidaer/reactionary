@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+article {
+  display: block;
+  position: relative;
+  min-height: 134px;
+  background: orange;
+}
+
+.container {
+  max-width: 667px;
+  height: 100%;
+  background: red;
+  margin: 0 auto;
+}
+
+.post-header {
+  padding-top: 0;
+  align-items: center;
+}
+
+.post-header-metadata-container {
+  display: flex;
+  align-items: center;
+}
+
+.post-header-wrapper {
+  position: relative;
+}
+
+.post-header-descriptor-line {
+  color: #a5a4a4;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  -ms-flex: 1 0;
+  flex: 1 0;
+}
+
+.post-header-descriptor-line-overflow {
+  color: #798389;
+  font-size: 14px;
+  line-height: 18px;
+  padding-bottom: 4px;
+  overflow: hidden;
+  padding: 8px 16px;
+  padding-right: 3em;
+  white-space: nowrap;
+}
+
+.post-header-descriptor-line-overflow:after {
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, #fff 70%);
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3em;
+}
+
+.post-header-avatar {
+  color: transparent;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  border-radius: 50%;
+  height: 24px;
+  margin-right: 6px;
+  width: 24px;
+  vertical-align: middle;
+  border: 0;
+}
+
+.post-header-author-link {
+  color: #1a1a1b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: transparent;
+}
+
+.post-header-post-meta-container {
+  display: flex;
+  align-items: center;
+}
+
+.post-header-separator {
+  color: #798389;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.post-header-separator:after {
+  color: #818384;
+  content: "\2022";
+  display: inline-block;
+  margin: 0 4px;
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+}
+
+.post-link {
+  bottom: 0;
+  left: 0;
+  pointer-events: all;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
