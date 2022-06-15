@@ -9,6 +9,8 @@ body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: #1a1a1b;
+  fill: #1a1a1b;
 }
 
 html,
@@ -20,13 +22,13 @@ article {
   display: block;
   position: relative;
   min-height: 134px;
-  background: orange;
+  /* background: orange; */
 }
 
 .container {
-  max-width: 667px;
+  max-width: 375px;
   height: 100%;
-  background: red;
+  /* background: red; */
   margin: 0 auto;
 }
 
@@ -113,6 +115,7 @@ article {
 }
 
 .post-header-separator:after {
+  pointer-events: all;
   color: #818384;
   content: "\2022";
   display: inline-block;
@@ -122,6 +125,34 @@ article {
   vertical-align: middle;
 }
 
+.post-header-icon-seashells {
+  padding-top: 4px;
+  width: 45px;
+  font-family: "rfont";
+  color: #565758;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 8px 16px 8px 12px;
+  vertical-align: middle;
+  background: transparent;
+}
+
+.fa-solid.fa-ellipsis {
+  color: black;
+}
+
+/* .post-header-icon-seashells:before {
+    padding-top: 4px;
+    -webkit-font-smoothing: antialiased;
+    content: "\F15B";
+    font-family: "rfont";
+    color: #565758;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 8px 16px 8px 12px;
+    vertical-align: middle;
+  } */
+
 .post-link {
   bottom: 0;
   left: 0;
@@ -129,4 +160,274 @@ article {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.post-thumbnail-and-title {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 16px;
+}
+
+.post-title {
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+.post-header-post-title-line {
+  display: block;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  padding: 2px 0;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  color: #1a1a1b;
+}
+
+.post-header-post-title-line:visited,
+.post-header-post-title-line:active {
+  color: #a5a4a4 !important;
+  pointer-events: all;
+}
+
+.post-footer {
+  display: block;
+  padding: 8px 16px;
+  border-bottom-width: 4px;
+  border-bottom: 8px solid #efefed;
+}
+
+.post-footer:before {
+  content: " ";
+  display: table;
+}
+
+.post-footer:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.post-footer-tools {
+  display: flex;
+  flex: 1;
+  float: none;
+  top: 0;
+  position: relative;
+}
+
+.post-footer-votes {
+  /* border: 1px dashed #efefed; */
+  border: 1px dashed red;
+  /* border-color: #edeff1; */
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  font-size: 12px;
+  margin-right: 10px;
+  max-width: 110px;
+  width: auto;
+  pointer-events: all;
+}
+
+.post-footer-save-button {
+  font-family: inherit;
+  line-height: inherit;
+  -webkit-appearance: button;
+  cursor: pointer;
+  text-transform: none;
+  overflow: visible;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+  writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: center;
+  border: 1px solid #efefed;
+  border-color: #edeff1;
+  border-radius: 16px;
+  align-items: center;
+  display: inline-flex;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  font-size: 12px;
+  flex-shrink: 1;
+  margin-right: 10px;
+  padding: 0;
+  width: auto;
+}
+
+.post-footer-comments-link {
+  color: #787c7e;
+  fill: #787c7e;
+  border: 1px solid #efefed;
+  border-color: #edeff1;
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  font-size: 12px;
+  margin-left: 0;
+  margin-right: 10px;
+  padding: 2px 8px 0;
+  width: auto;
+  max-width: 100px;
+  text-decoration: none;
+  line-height: 24px;
+  text-align: center;
+  background: transparent;
+  cursor: pointer;
+}
+
+.post-footer-comments-link-icon {
+  margin-right: 4px;
+  flex: 0 0 16px;
+  height: 16px;
+  width: 16px;
+}
+
+.post-footer-toggled {
+  color: #787c7e;
+  fill: #787c7e;
+  border: 1px solid #efefed;
+  border-color: #edeff1;
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  width: 32px;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 85px;
+  pointer-events: all;
+}
+
+.upvote {
+  border: unset;
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  width: 32px;
+  font-size: 12px;
+  color: #787c7e;
+  fill: #787c7e;
+  line-height: 24px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.upvote > svg {
+  flex: 0 0 16px;
+  height: 16px;
+  width: 16px;
+  font-weight: 500;
+  overflow: hidden;
+  font-size: 12px;
+  color: #787c7e;
+  fill: #787c7e;
+  line-height: 24px;
+}
+
+.vote-score {
+  min-width: 16px;
+  color: #787c7e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 2px;
+  fill: #ccccca;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  pointer-events: all;
+  padding: 2px 8px 2px 2px;
+}
+
+.post-footer-button-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  max-width: 85px;
+  padding: 1px 7px;
+  color: #787c7e;
+  fill: #787c7e;
+  white-space: nowrap;
+}
+
+.post-footer-save-icon {
+  margin-right: 0;
+  flex: 0 0 16px;
+  opacity: 1;
+  position: static;
+  overflow: hidden;
+  height: 16px;
+  color: #787c7e;
+  fill: #787c7e;
+}
+
+.post-footer-toggled {
+  color: #787c7e;
+  fill: #787c7e;
+  border: 1px solid #efefed;
+  border-color: #edeff1;
+  align-items: center;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+  width: 32px;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 85px;
+  pointer-events: all;
+  white-space: nowrap;
+}
+
+.post-footer-toggled-icon {
+  flex: 0 0 16px;
+  height: 16px;
+  width: 16px;
+  color: #787c7e;
+  fill: #787c7e;
+  font-weight: 500;
 }

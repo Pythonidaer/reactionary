@@ -63,19 +63,19 @@ const parseResults = (fetchPostsResponses) => {
 
   // const userList = Object.keys(statsByUser);
   // console.log(userList);
-  const userList = Object.keys(statsByUser).map((username) => ({
-    username,
-    score: statsByUser[username].score,
-    postCount: statsByUser[username].postCount,
-  }));
+  // const userList = Object.keys(statsByUser).map((username) => ({
+  //   username,
+  //   score: statsByUser[username].score,
+  //   postCount: statsByUser[username].postCount,
+  // }));
   // console.log(userList);
 
-  const userList2 = Object.keys(postsByUser).map((author) => ({
+  const userList = Object.keys(postsByUser).map((author) => ({
     author,
     title: postsByUser[author].title,
     permalink: postsByUser[author].permalink,
   }));
-  console.log(userList2);
+  console.log(userList);
   // console.log(postByUser);
 
   // const sortedList = userList.sort((userA, userB) => userB.score - userA.score);
@@ -83,12 +83,12 @@ const parseResults = (fetchPostsResponses) => {
 
   // How does sortedList compare to userList ?
 
-  displayRankings(userList2);
+  displayPosts(userList);
 };
 
-const displayRankings = (userList2) => {
+const displayPosts = (userList) => {
   const container = document.getElementById("results-container");
-  userList2.forEach(({ author, title, permalink }, i) => {
+  userList.forEach(({ author, title, permalink }, i) => {
     rank = i + 1;
     const userCard = document.createElement("a");
     userCard.href = `https://www.reddit.com/user/${author}`;
@@ -110,3 +110,86 @@ subredditSelectForm.addEventListener("submit", handleSubmit);
 const postSelectForm = document.getElementById("results-container-comments");
 // similar to handleSubmit, except this click will be for comments
 // subredditSelectForm.addEventListener("submit", handleClick);
+
+const displayPostsUI = (userList) => {
+  const container = document.getElementById("results-container");
+  userList.forEach(({ author, title, permalink }, i) => {
+    rank = i + 1;
+
+    /* =============== */
+    /* POST LINK START */
+    const postLink = document.createElement("a");
+    postLink.href = `https://www.reddit.com${permalink}`;
+    postLink.target = `_blank`;
+    postLink.classList.add("post-link");
+    /* POST LINK END */
+    /* =============== */
+
+    /* ========================= */
+    /* POST HEADER WRAPPER START */
+    const postHeaderWrapper = document.createElement("div");
+    postHeaderWrapper.classList.add("post-header-wrapper");
+    const postHeader = document.createElement("header");
+    postHeader.classList.add("post-header");
+    const postHeaderMetadataContainer = document.createElement("div");
+    postHeaderMetadataContainer.classList.add("post-header-metadata-container");
+    // Adjacent to Seashells
+    const postHeaderDescriptorLine = document.createElement("div");
+    postHeaderDescriptorLine.classList.add("post-header-descriptor-line");
+    const postHeaderDescriptorLineOverflow = document.createElement("div");
+    postHeaderDescriptorLineOverflow.classList.add(
+      "post-header-descriptor-line-overflow"
+    );
+    const spanContainer = document.createElement("span");
+    const postHeaderPostMetaContainer = document.createElement("span");
+    postHeaderPostMetaContainer.innerText = `utc time ago posted here`;
+    postHeaderPostMetaContainer.classList.add(
+      "post-header-post-meta-container"
+    );
+    // Adjacent to postHeaderSeparator
+    const postHeaderAuthorLink = document.createElement("a");
+    postHeaderAuthorLink.href = `https://www.reddit.com/user/${author}`;
+    postHeaderAuthorLink.target = `_blank`;
+    postHeaderAuthorLink.classList.add("post-header-author-link");
+    postHeaderAuthorLink.innerText = `${author}`;
+    const postHeaderAvatar = document.createElement("img");
+    postHeaderAvatar.alt = `${author} avatar`;
+    postHeaderAvatar.src = `https://www.redditstatic.com/mweb2x/img/snoovatars/snoovatar_9.png`;
+    postHeaderAvatar.classList.add("post-header-avatar");
+    // Adjacent to postHeaderAuthorLink
+    const postHeaderSeparator = document.createElement("span");
+    postHeaderSeparator.classList.add("post-header-separator");
+
+    // Adjacent to Descriptor Line
+    const postHeaderIconSeashells = document.createElement("div");
+    postHeaderIconSeashells.classList.add("post-header-icon-seashells");
+    /* POST HEADER WRAPPER END */
+    /* ========================= */
+
+    /* ========================== */
+    /* POST THUMBNAIL TITLE START */
+    const postThumbnailTitle = document.createElement("div");
+    postThumbnailTitle.classList.add("post-thumbnail-and-title");
+    const postTitle = document.createElement("a");
+    postTitle.href = `https://www.reddit.com${permalink}`;
+    postTitle.classList.add("post-header-post-title-line");
+    postTitle.target = `_blank`;
+    postTitle.innerText = `title goes here`;
+    postThumbnailTitle.appendChild(postTitle);
+    /* POST THUMBNAIL TITLE END */
+    /* ======================== */
+
+    /* ================= */
+    /* POST FOOTER START */
+    const postFooter = document.createElement("footer");
+    postFooter.classList.add("post-footer");
+
+    /* POST FOOTER END */
+    /* =============== */
+
+    container.appendChild(postLink);
+    container.appendChild(postHeaderWrapper);
+    container.appendChild(postThumbnailTitle);
+    container.appendChild(postFooter);
+  });
+};
