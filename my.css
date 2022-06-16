@@ -18,6 +18,25 @@ body {
   height: 100%;
 }
 
+h1 {
+  text-align: center;
+  color: #0079de;
+  margin: 2rem 0;
+}
+
+.subreddit-search-btn {
+  background-color: #0079d3;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  padding: 2px 10px;
+}
+
+#subreddit-select-form {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
 article {
   display: block;
   position: relative;
