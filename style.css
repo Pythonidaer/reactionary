@@ -541,12 +541,12 @@ article {
 }
 
 .hide_posts {
-  /* display: none; */
+  display: none;
   /* -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;*/
   /* transition: all 1s ease-in-out; */
-  animation: fade-out 1000ms forwards;
+  /* animation: fade-out 1000ms forwards; */
 }
 
 .transition.hide_posts {
