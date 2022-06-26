@@ -40,3 +40,17 @@ Parameters.
 - to make another fetch request to get the following ~25 posts
 
 2. &limit=100 - we can get up to 100 posts at a time
+
+Notes:
+UTC Time: https://www.youtube.com/watch?v=DXPkCxTUXSw
+More UTC: https://www.youtube.com/watch?v=OvRFRPkyd3M
+UNIX converter: https://www.delftstack.com/howto/javascript/javascript-convert-timestamp-to-date/#:~:text=Convert%20Unix%20Timestamp%20to%20Date%20in%20JavaScript&text=getDate()%20returns%20the%20day,hour%20format%20for%20that%20time.
+
+Epoc converter: https://www.epochconverter.com/
+
+Subreddit format: https://www.reddit.com/r/modhelp/comments/1gd1at/name_rules_when_trying_to_create_a_subreddit/
+https://www.reddit.com/r/help/comments/592kmw/are_there_subreddit_name_restrictions/
+
+Because regex is hard: https://bobbyhadz.com/blog/javascript-check-if-regex-matches-entire-string#:~:text=Use%20the%20test()%20method,entire%20string%2C%20and%20false%20otherwise.
+
+Checkbox Codepen: https://codepen.io/dpatrikeev/pen/pdMroM

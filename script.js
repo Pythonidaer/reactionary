@@ -1,55 +1,73 @@
 // Where we store our responses from when fetchPosts is called
-// since multiple fetches will be called in this app, I am renaming this to be a more specific type
-const fetchPostsResponses = [];
-const fetchCommentsResponses = [];
 
+// const { post } = require("request");
+
+// since multiple fetches will be called in this app, I am renaming this to be a more specific type
+const subredditSelectForm = document.getElementById("subreddit-select-form");
+// const fetchPostsResponses = [];
+// const fetchCommentsResponses = [];
 const afters = [];
+
+const postContainer = document.getElementById("results-container");
+
+const searchPhraseValidation = (subreddit) => {
+  // subreddit values need to satisfy the following criteria:
+  // Condition 1: subreddit.length >= 3 || <= 21
+  if (subreddit.length < 3 || subreddit.length > 21) {
+    alert(`Subreddits must be between 3 and 21 characters.`);
+    document.location.reload();
+  }
+
+  // Condition 2: subreddit can't start with an underscore
+  if (subreddit[0].includes("_")) {
+    alert(`Subreddits cannot start with underscores.`);
+    document.location.reload();
+  }
+
+  // Condition 3: only letters, numbers and underscores allowed
+  subreddit.split("").forEach((letter) => {
+    if (!/\w|\d|_/g.test(letter)) {
+      alert(`Subreddits can only contain letters, numbers and/or underscores.`);
+      document.location.reload();
+    }
+  });
+};
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  postContainer.innerHTML = "";
   const subreddit = document.getElementById("subreddit").value;
+  document.getElementById("subreddit").value = "";
+
+  searchPhraseValidation(subreddit);
   fetchPosts(subreddit);
 };
 
 const fetchPosts = async (subreddit) => {
+  const fetchPostsResponses = [];
+
   const response = await fetch(
     `https://www.reddit.com/r/${subreddit}.json?limit=3`
   );
-  // console.log(response);
   const responseJSON = await response.json();
-  // console.log(responseJSON);
   fetchPostsResponses.push(responseJSON);
-  // console.log("fetchPostsResponses");
-  // console.log(fetchPostsResponses);
 
   parseResults(fetchPostsResponses);
 };
 
 const parseResults = (fetchPostsResponses) => {
   const allPosts = [];
-  // console.log(fetchPostsResponses);
 
   fetchPostsResponses.forEach((response) => {
+    console.log(response);
+
     allPosts.push(...response.data.children);
   });
-  // console.log("allPosts");
-  // console.log(allPosts);
-  // postByUser = { posts: [] };
-  // allPosts.forEach(({ data: { author, title, permalink } }) => {});
 
-  // statsByUser = {};
+  fetchPostsResponses.length = 0;
+  // console.log("allPosts:", allPosts);
+
   postsByUser = {};
-
-  // allPosts.forEach(({ data: { author, score } }) => {
-  //   statsByUser[author] = !statsByUser[author]
-  //     ? { postCount: 1, score }
-  //     : {
-  //         postCount: statsByUser[author].postCount + 1,
-  //         score: statsByUser[author].score + score,
-  //       };
-  // });
-
-  console.log(allPosts[0]);
 
   allPosts.forEach(
     ({
@@ -67,18 +85,6 @@ const parseResults = (fetchPostsResponses) => {
     }
   );
 
-  // console.log(statsByUser);
-  console.log(postsByUser);
-
-  // const userList = Object.keys(statsByUser);
-  // console.log(userList);
-  // const userList = Object.keys(statsByUser).map((username) => ({
-  //   username,
-  //   score: statsByUser[username].score,
-  //   postCount: statsByUser[username].postCount,
-  // }));
-  // console.log(userList);
-
   const userList = Object.keys(postsByUser).map((author) => ({
     author,
     title: postsByUser[author].title,
@@ -87,33 +93,10 @@ const parseResults = (fetchPostsResponses) => {
     num_comments: postsByUser[author].num_comments,
     ups: postsByUser[author].ups,
   }));
-  // console.log(userList);
-  // console.log(postByUser);
 
-  // const sortedList = userList.sort((userA, userB) => userB.score - userA.score);
-  // console.log(sortedList);
-
-  // How does sortedList compare to userList ?
-
-  // displayPosts(userList);
   displayPostsUI(userList);
 };
 
-// const displayPosts = (userList) => {
-//   const container = document.getElementById("results-container");
-//   userList.forEach(({ author, title, permalink }, i) => {
-//     rank = i + 1;
-//     const userCard = document.createElement("a");
-//     userCard.href = `https://www.reddit.com/user/${author}`;
-//     userCard.classList.add("user-card");
-//     // userCard.innerText = `${rank}. ${username} - ${postCount} post(s) - ${score} point(s)`;
-//     userCard.innerText = `${author} - ${title} - ${permalink}`;
-
-//     container.appendChild(userCard);
-//   });
-// };
-
-const subredditSelectForm = document.getElementById("subreddit-select-form");
 subredditSelectForm.addEventListener("submit", handleSubmit);
 
 // this should probably change to when I get to adding a form
@@ -124,9 +107,36 @@ const postSelectForm = document.getElementById("results-container-comments");
 // similar to handleSubmit, except this click will be for comments
 // subredditSelectForm.addEventListener("submit", handleClick);
 
+const formatMovement = function (date) {
+  const unixToMillisecond = date * 1000;
+  const dateMS = new Date();
+  const unixMStoMinutes = unixToMillisecond / 1000 / 60;
+  const dateMStoMinutes = dateMS / 1000 / 60;
+
+  const postDate = Math.round(dateMStoMinutes - unixMStoMinutes);
+  if (postDate < 60) {
+    if (postDate < 1) {
+      return `1m`;
+    }
+    return `${postDate}m`;
+  }
+  if (postDate >= 60 && postDate < 1440) {
+    const postDateHours = Math.round(postDate / 60);
+    return `${postDateHours}h`;
+  }
+  if (postDate >= 1440 && postDate < 525600) {
+    const postDateDays = Math.round(postDate / 60 / 24);
+    return `${postDateDays}d`;
+  }
+  if (postDate >= 525600) {
+    const postDateYears = Math.round(postDate / 60 / 24 / 365);
+    return `${postDateYears}y`;
+  }
+};
+
 const displayPostsUI = (userList) => {
   const container = document.getElementById("results-container");
-  console.log(userList[0]);
+
   userList.forEach(
     ({ author, title, permalink, created_utc, num_comments, ups }, i) => {
       rank = i + 1;
@@ -160,7 +170,8 @@ const displayPostsUI = (userList) => {
       const spanContainer = document.createElement("span");
       const postHeaderPostMetaContainer = document.createElement("span");
       // postHeaderPostMetaContainer.innerText = `utc time ago posted here`;
-      postHeaderPostMetaContainer.innerText = `${created_utc}`;
+      // postHeaderPostMetaContainer.innerText = `${created_utc}`;
+      postHeaderPostMetaContainer.innerText = `${formatMovement(created_utc)}`;
       postHeaderPostMetaContainer.classList.add(
         "post-header-post-meta-container"
       );
@@ -284,16 +295,24 @@ const displayPostsUI = (userList) => {
       // Nested under Footer Tools
       const postFooterToggled = document.createElement("span");
       postFooterToggled.classList.add("post-footer-toggled");
-      postFooterToggled.innerHTML = `              <svg
-    class="post-footer-toggled-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 576 512"
-  >
-    <path
-      d="M192 352C138.1 352 96 309 96 256C96 202.1 138.1 160 192 160C245 160 288 202.1 288 256C288 309 245 352 192 352zM384 448H192C85.96 448 0 362 0 256C0 149.1 85.96 64 192 64H384C490 64 576 149.1 576 256C576 362 490 448 384 448zM384 128H192C121.3 128 64 185.3 64 256C64 326.7 121.3 384 192 384H384C454.7 384 512 326.7 512 256C512 185.3 454.7 128 384 128z"
-    />
-  </svg>`;
+      const postFooterInputToggle = document.createElement("div");
+      postFooterInputToggle.classList.add(
+        "filter__input",
+        "input",
+        "input_toggle"
+      );
+      const postFooterInputSource = document.createElement("input");
+      postFooterInputSource.classList.add("input__source");
+      postFooterInputSource.setAttribute("id", `toggle-${rank}`);
+      postFooterInputSource.setAttribute("type", "checkbox");
+      postFooterInputSource.setAttribute("name", "filter-toggle");
+      const postFooterInputLabel = document.createElement("label");
+      postFooterInputLabel.classList.add("input__label");
+      postFooterInputLabel.setAttribute("for", `toggle-${rank}`);
 
+      postFooterInputToggle.appendChild(postFooterInputSource);
+      postFooterInputToggle.appendChild(postFooterInputLabel);
+      postFooterToggled.appendChild(postFooterInputToggle);
       postFooterVotes.appendChild(upvotes);
       postFooterVotes.appendChild(voteScore);
       postFooterTools.appendChild(postFooterVotes);
@@ -306,27 +325,119 @@ const displayPostsUI = (userList) => {
       /* POST FOOTER END */
       /* =============== */
 
-      // need to create a parent article for each post
-      // article needs to be position relative
-      // currently each link spans entire column
-      // so they are all 100% of the container - bad
-      // article is currently entire container
-      // article will become each post in container
-      container.appendChild(postLink);
-      container.appendChild(postHeaderWrapper);
-      container.appendChild(postThumbnailTitle);
-      container.appendChild(postFooter);
+      const articlePerPost = document.createElement("article");
+      articlePerPost.classList.add("transition");
+      articlePerPost.appendChild(postLink);
+      articlePerPost.appendChild(postHeaderWrapper);
+      articlePerPost.appendChild(postThumbnailTitle);
+      articlePerPost.appendChild(postFooter);
+      container.appendChild(articlePerPost);
     }
+  );
+  togglePostSelection();
+};
+
+const togglePostSelection = () => {
+  const toggleSpanContainers = document.querySelectorAll(
+    ".post-footer-toggled"
+  );
+  const toggleSpans = document.querySelectorAll(".input__source");
+
+  toggleSpans.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      toggleSpans.forEach((toggle) => {
+        const postArticle =
+          toggle.parentElement.parentElement.parentElement.parentElement
+            .parentElement.classList;
+        // postArticle.remove("transition");
+        if (toggle.checked) {
+          postArticle.toggle("show_posts");
+          postArticle.toggle("toggled");
+          const comments =
+            toggle.parentElement.parentElement.parentElement.parentElement
+              .previousElementSibling.previousElementSibling
+              .previousElementSibling.href;
+          fetchComments(comments);
+        } else {
+          postArticle.toggle("hide_posts");
+
+          if (Array.from(postArticle).includes("show_posts")) {
+            postArticle.remove("hide_posts");
+          }
+          postArticle.remove("show_posts");
+        }
+      });
+    });
+  });
+
+  toggleSpanContainers.forEach((container) =>
+    container.addEventListener("click", (e) => {
+      // console.log(e.target);
+      if (Array.from(e.target.classList).includes("post-footer-toggled")) {
+        container.childNodes[0].childNodes[0].click();
+      }
+    })
   );
 };
 
-// Need to write a function for the following:
-/*
-Reddit posts display: "9h"
-- this implies "Post was created 9 hours ago"
-- Reddit API returns a created_utc time
-- That created_utc time needs to be converted to hours
-- The current time needs to be converted to hours
-- The current hours needs to be subtracted by post time
-- The absolute number should be added to an h
-*/
+const fetchComments = async (comments) => {
+  const fetchCommentsResponses = [];
+
+  const response = await fetch(`${comments}.json?limit=10`);
+  const responseJSON = await response.json();
+  fetchCommentsResponses.push(responseJSON);
+  // console.log(fetchCommentsResponses);
+
+  parseComments(fetchCommentsResponses);
+};
+
+const parseComments = (fetchCommentsResponses) => {
+  const allComments = [];
+
+  fetchCommentsResponses.forEach((response) => {
+    allComments.push(...response[1].data.children);
+  });
+
+  // console.log(allComments);
+
+  fetchCommentsResponses.length = 0;
+
+  commentsForPost = {};
+
+  allComments.forEach(
+    ({ data: { author, body, permalink, ups, subreddit } }) => {
+      commentsForPost[author] = !commentsForPost[author]
+        ? { body, permalink, ups, subreddit }
+        : { body, permalink, ups, subreddit };
+    }
+  );
+
+  const commentList = Object.keys(commentsForPost).map((author) => ({
+    author,
+    body: commentsForPost[author].body,
+    permalink: commentsForPost[author].permalink,
+    ups: commentsForPost[author].ups,
+    subreddit: commentsForPost[author].subreddit,
+  }));
+
+  console.log(commentList);
+  consoleLogComments(commentList);
+};
+
+const consoleLogComments = (commentList) => {
+  commentList.forEach(({ author, body, permalink, ups, subreddit }, i) => {
+    console.log(` =======================================
+      Post number ${i + 1}:
+
+      AUTHOR: ${author}
+
+      BODY: ${body}
+
+      PERMALINK: ${permalink}
+
+      UPVOTES: ${ups}
+
+      TAG: ${subreddit}
+      =======================================`);
+  });
+};
