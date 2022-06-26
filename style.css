@@ -511,57 +511,19 @@ article {
 }
 
 .transition {
-  /* -webkit-transition: all 1s ease-in-out; */
-  /* -moz-transition: all 1s ease-in-out; */
-  /* -o-transition: all 1s ease-in-out; */
-  /* transition: all 1s ease-in-out; */
-  /* transition: all 5000ms ease-in-out 2000ms; */
-  /* transition: opacity 1000ms ease-in-out; */
   animation: fade-in 1000ms forwards;
-  /* transition: top 3000ms ease-in-out 2000ms, left 1000ms ease-in-out 2000ms, */
-  /* bottom 1000ms ease-in-out 2000ms, right 1000ms ease-in-out 2000ms; */
-  /* transition: all 3000ms ease-in-out; */
-}
-
-.show_posts {
-  /* display: block; */
-  /* transition: top 3000ms ease-in-out 2000ms, left 1000ms ease-in-out 2000ms,
-    bottom 1000ms ease-in-out 2000ms, right 1000ms ease-in-out 2000ms; */
-  /* animation: fade-in 500ms forwards; */
-}
-
-.show_posts.toggled {
-  /* opacity: 1; */
-  /* position: absolute;
-  top: 100px;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  /* transition: top 3000ms ease-in-out 2000ms, left 1000ms ease-in-out 2000ms; */
 }
 
 .hide_posts {
   display: none;
-  /* -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;*/
-  /* transition: all 1s ease-in-out; */
-  /* animation: fade-out 1000ms forwards; */
-}
-
-.transition.hide_posts {
-  /* opacity: 0; */
-  /* animation: fade-out 1000ms forwards; */
 }
 
 @keyframes fade-in {
   0% {
     opacity: 0;
-    /* background-color: transparent; */
   }
   100% {
     opacity: 1;
-    /* background-color: red; */
   }
 }
 
