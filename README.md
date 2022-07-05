@@ -54,3 +54,5 @@ https://www.reddit.com/r/help/comments/592kmw/are_there_subreddit_name_restricti
 Because regex is hard: https://bobbyhadz.com/blog/javascript-check-if-regex-matches-entire-string#:~:text=Use%20the%20test()%20method,entire%20string%2C%20and%20false%20otherwise.
 
 Checkbox Codepen: https://codepen.io/dpatrikeev/pen/pdMroM
+
+Resizing SVG: https://pixelied.com/home
