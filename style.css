@@ -537,6 +537,11 @@ article {
 }
 
 /*
+
+EDIT: 
+This probably needs to be done with transform-y and JavaScript
+
+
 Principles involved in CSS Animation Series
 - Instill with life
 - Having the appearance of movement
@@ -552,3 +557,163 @@ CSS Movement:
 
 
 */
+
+/* COMMENTS CSS */
+.CommentTree__tree {
+  padding: 0;
+}
+.CommentTree__comment.m-comment.m-toplevel {
+  position: relative;
+  padding: 16px 16px 0;
+}
+.CommentTree__comment.m-toplevel:not(:first-child) {
+  border-top: 1px solid #efefed;
+  margin-top: 16px;
+}
+.Comment {
+  padding-left: 0;
+}
+.Comment.in-comment-tree.m-top {
+  background-color: #fff;
+}
+.Comment__header {
+  padding: 0;
+}
+.CommentHeader {
+}
+.CommentHeader__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: inherit;
+}
+.CommentHeader__col2 {
+  max-width: 0;
+  white-space: nowrap;
+  padding: 0;
+  padding-left: 40px;
+  vertical-align: middle;
+}
+.CommentHeader__container {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.CommentHeader__username {
+  color: #121213;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-weight: 700;
+  margin-right: 8px;
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 17px;
+  vertical-align: middle;
+}
+.CommentHeader__avatar {
+  height: 30px;
+  margin-left: -40px;
+  position: absolute;
+  width: 30px;
+  color: transparent;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0;
+}
+}
+.CommentHeader__timestamp {
+  color: #565758;
+  font-size: 12px;
+  line-height: 17px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.CommentHeader__colMore {
+  vertical-align: top;
+  width: 16px;
+}
+.CommentHeader__more.icon.icon-seashells {
+    color: #565758;
+}
+.icon-seashells:before {
+    content: "\F15B";
+}
+.sr-only {
+}
+.Comment__body {
+    padding-left: 40px;
+    margin-top: 4px;
+    overflow: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+.md p{
+    margin: 0 0 10px;
+}
+.Comment__toolsContainer.clearfix {
+    padding-left: 40px;
+    overflow: visible;
+}
+.Comment__toolsContainer:after {
+    content: " ";
+    display: table;
+}
+.Comment__tools {
+    align-items: flex-start;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+/* .DropdownModalWrapper {
+}
+.VotingBox {
+
+}
+._1UC3OWGfqCsYvxcSoPUm3w.icon.icon-reply2 {
+}
+._2OSerrGqsksmXpb-ulVmEG {
+}
+.AwardsBar {
+} */
+
+.tag-parent {
+    padding-left: 15px;
+    display: flex;
+}
+
+.Comment__toolsContainer.clearfix  .post-footer-toggled::-webkit-scrollbar {
+    display: none;
+}
+
+.Comment__toolsContainer.clearfix  .post-footer-toggled {
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-right:30px;
+    /* visibility: hidden; */
+    border: 1px dashed blue;
+    line-height: 24px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 12px;
+    min-width: 120px !important;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#subreddit-tag {
+    padding-right: 15px;
+    font-size: 12px;
+}
+
