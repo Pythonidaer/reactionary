@@ -59,7 +59,7 @@ const parseResults = (fetchPostsResponses) => {
   const allPosts = [];
 
   fetchPostsResponses.forEach((response) => {
-    console.log(response);
+    // console.log(response);
 
     allPosts.push(...response.data.children);
   });
@@ -352,19 +352,35 @@ const togglePostSelection = () => {
         // postArticle.remove("transition");
         if (toggle.checked) {
           postArticle.toggle("show_posts");
-          postArticle.toggle("toggled");
-          const comments =
-            toggle.parentElement.parentElement.parentElement.parentElement
-              .previousElementSibling.previousElementSibling
-              .previousElementSibling.href;
-          fetchComments(comments);
+          // postArticle.toggle("toggled");
+          if (Array.from(postArticle).includes("show_posts")) {
+            const comments =
+              toggle.parentElement.parentElement.parentElement.parentElement
+                .previousElementSibling.previousElementSibling
+                .previousElementSibling.href;
+            fetchComments(comments);
+          }
+          // const comments =
+          //   toggle.parentElement.parentElement.parentElement.parentElement
+          //     .previousElementSibling.previousElementSibling
+          //     .previousElementSibling.href;
+          // fetchComments(comments);
         } else {
           postArticle.toggle("hide_posts");
 
           if (Array.from(postArticle).includes("show_posts")) {
-            postArticle.remove("hide_posts");
+            console.log(true);
+            // postArticle.remove("hide_posts");
+            // postArticle.toggle("hide_posts");
+            postArticle.remove("show_posts");
           }
-          postArticle.remove("show_posts");
+          // if (Array.from(postArticle).includes("hide_posts")) {
+          //   // console.log(true);
+          //   // postArticle.remove("hide_posts");
+          //   // postArticle.toggle("hide_posts");
+          //   // postArticle.remove("hide_posts");
+          // }
+          // postArticle.remove("show_posts");
         }
       });
     });
@@ -420,8 +436,8 @@ const parseComments = (fetchCommentsResponses) => {
     subreddit: commentsForPost[author].subreddit,
   }));
 
-  console.log(commentList);
-  consoleLogComments(commentList);
+  // console.log(commentList);
+  // consoleLogComments(commentList);
   displayCommentsUI(commentList);
 };
 
