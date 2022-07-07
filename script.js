@@ -433,10 +433,9 @@ const parseComments = (fetchCommentsResponses) => {
 const displayCommentsUI = (commentList) => {
   const container = document.getElementById("results-container-comments");
 
-  // Loops over last element which isn't a comment
-  // Might want to filter before looping into HTML
-  commentList.forEach(
-    ({ author, body, permalink, ups, subreddit, created_utc }, i) => {
+  commentList
+    .filter(({ author }) => author !== "undefined")
+    .forEach(({ author, body, permalink, ups, subreddit, created_utc }, i) => {
       rank = i + 1;
 
       const html = `<div class="CommentTree__tree">
@@ -607,7 +606,6 @@ const displayCommentsUI = (commentList) => {
  </div>`;
       // container.appendChild(html);
       container.insertAdjacentHTML("beforeend", html);
-    }
-  );
+    });
   togglePostSelection();
 };
