@@ -319,6 +319,7 @@ article {
 }
 
 .post-footer-comments-link-icon {
+  /* Needs to be removed on comments comment icon */
   margin-right: 4px;
   flex: 0 0 16px;
   height: 16px;

@@ -7,30 +7,25 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Reddit JavaScript Project</title>
     <meta name="description" content="" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
     <link rel="stylesheet" href="./style.css" />
-    <!-- <link rel="stylesheet" href="./comments.css" /> -->
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <h1>Reddit Reactions</h1>
+    <h1>Reddit Comment Saver</h1>
     <form action="" id="subreddit-select-form">
       <label for="">r/</label>
       <input type="text" id="subreddit" />
       <button class="subreddit-search-btn" type="submit">Search</button>
     </form>
-    <div>
-      <main class="container">
-        <article id="results-container"></article>
-        <div id="results-container-comments"></div>
-      </main>
-    </div>
-    <div id="results-container-posts"></div>
-    <!-- <div id="results-container-comments"></div> -->
+    <main class="container">
+      <article id="results-container-posts"></article>
+      <article id="results-container-comments"></article>
+    </main>
   </body>
 </html>
