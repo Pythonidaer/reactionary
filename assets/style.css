@@ -446,6 +446,21 @@ article {
   cursor: pointer;
 }
 
+.comment-footer {
+  color: #787c7e;
+  fill: #787c7e;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  max-width: 85px;
+  pointer-events: all;
+  white-space: nowrap;
+  transition: background 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 /* .post-footer-toggled-icon {
   flex: 0 0 16px;
   height: 16px;
@@ -692,11 +707,26 @@ CSS Movement:
     display: flex;
 }
 
-.Comment__toolsContainer.clearfix  .post-footer-toggled::-webkit-scrollbar {
+.Comment__toolsContainer.clearfix  .post-footer-toggled::-webkit-scrollbar,
+.comment-footer::-webkit-scrollbar {
     display: none;
 }
 
-.Comment__toolsContainer.clearfix  .post-footer-toggled {
+.Comment__toolsContainer.clearfix  .post-footer-toggled,
+.comment-footer {
+  color: #787c7e;
+  fill: #787c7e;
+  border-radius: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-weight: 500;
+  height: 32px;
+  max-width: 85px;
+  pointer-events: all;
+  white-space: nowrap;
+  transition: background 0.2s ease-in-out;
+  cursor: pointer;
+  /*  */
     margin-left: auto;
     box-sizing: border-box;
     margin-right:30px;

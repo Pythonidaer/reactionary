@@ -56,3 +56,5 @@ Because regex is hard: https://bobbyhadz.com/blog/javascript-check-if-regex-matc
 Checkbox Codepen: https://codepen.io/dpatrikeev/pen/pdMroM
 
 Resizing SVG: https://pixelied.com/home
+
+Filter: https://www.javascripttutorial.net/javascript-array-filter/
